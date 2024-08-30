@@ -105,7 +105,8 @@ public class LoginServiceImpl implements LoginService {
             Authentication auth= authenticationProviders.authenticate(token);
             log.info("Authenticating staff {}",auth);
             if(auth.isAuthenticated()){
-                AccountResp user = accountService.getAccount(loginParam.getPhoneNumber());
+                log.info("getting the login param {}",loginParam.getPhoneNumber());
+                AccountResp user = accountService.getAccountByPhoneNumber(loginParam.getPhoneNumber());
                 SecurityContextHolder.getContext().setAuthentication(token);
                 log.info("User successfully logged in -> username: {} ", loginParam.getPhoneNumber());
                 session.setAttribute("user", user);

@@ -27,7 +27,8 @@ public class SecurityConfig  {
                 .csrf(AbstractHttpConfigurer::disable);
         // Disable CSRF if needed
         http    .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/v1/login/customer").permitAll() // Whitelist URLs
+                        .requestMatchers("/api/v1/login/customer").permitAll()
+                        .requestMatchers("/api/v1/account/add").permitAll() // Whitelist URLs
                         .anyRequest().authenticated() // All other requests require authentication
                 )
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class); // Add JWT filter before the default authentication filter

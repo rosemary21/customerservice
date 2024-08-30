@@ -34,9 +34,9 @@ public class AccountController {
 
 
     @ApiOperation(value = "Fetch Account Service", response = AccountResp.class, notes = "This is use to Fetch Account Service")
-    @RequestMapping(value = {"/fetch/{accountnumber}"}, method = RequestMethod.GET)
-    private ResponseEntity<AccountResp>getAccount(@PathVariable String accountnumber) {
-        var bvnResp = accountService.getAccount(accountnumber);
+    @RequestMapping(value = {"/fetch/{phoneNumber}"}, method = RequestMethod.GET)
+    private ResponseEntity<AccountResp>getAccount(@PathVariable String phoneNumber) {
+        var bvnResp = accountService.getAccount(phoneNumber);
         return new ResponseEntity<AccountResp>(bvnResp, HttpStatus.OK);
     }
 

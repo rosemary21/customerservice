@@ -6,6 +6,7 @@ import interswitch.assessment.customerservice.account.res.AccountResp;
 public interface AccountService {
 
     AccountResp addAccount(AccountReq accountReq);
-    AccountResp getAccount(String accountNumber);
+    AccountResp getAccount(String phoneNumber);
+    AccountResp getAccountByPhoneNumber(String phoneNumber);
 
 }

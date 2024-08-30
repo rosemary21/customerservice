@@ -7,6 +7,7 @@ import interswitch.assessment.customerservice.account.repository.AccountReposito
 import interswitch.assessment.customerservice.account.req.AccountReq;
 import interswitch.assessment.customerservice.account.res.AccountResp;
 import interswitch.assessment.customerservice.account.service.AccountService;
+import interswitch.assessment.customerservice.billpayment.dto.Utility;
 import interswitch.assessment.customerservice.bvn.dto.BvnDto;
 import interswitch.assessment.customerservice.bvn.service.BvnDetailService;
 import interswitch.assessment.customerservice.bvn.web.req.BvnDetailsReq;
@@ -19,6 +20,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Locale;
 
 @Service
@@ -52,7 +54,9 @@ public class AccountServiceImpl implements AccountService {
         bvnDetailsReq.setBvn(accountReq.getBvn());
         bvnDetailsReq.setDob(accountReq.getDateOfBirth());
         boolean result=PasswordUtil.checkPassword(account.getPassword());
-
+        String number= Utility.generateNumber(Utility.generateReference(7),10);
+        log.info("Account Number Entry {}",number);
+        accountReq.setAccountNumber(number);
         Account details=accountRepository.findByPhoneNumberOrEmailOrBvn(accountReq.getPhoneNumber(),accountReq.getEmail(), accountReq.getBvn());
          if(details!=null){
              accountResp.setMessage(messageSource.getMessage("account.number.exist", null, Locale.ENGLISH));
@@ -72,6 +76,8 @@ public class AccountServiceImpl implements AccountService {
              return accountResp;
          }
         account.setPassword(passwordEncoder.encode(accountReq.getPassword()));
+        account.setBalance(new BigDecimal(0));
+        account.setAccountNumber(number);
         accountRepository.save(account);
         accountResp.setMessage(messageSource.getMessage("account.success.code", null, Locale.ENGLISH));
         accountResp.setStatus("true");
@@ -79,10 +85,15 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountResp getAccount(String accountNumber){
+    public AccountResp getAccount(String phoneNumber){
         try{
             AccountResp accountResp=new AccountResp();
-            Account account=  accountRepository.findByAccountNumber(accountNumber);
+            Account account=  accountRepository.findByPhoneNumber(phoneNumber);
+            if(account==null){
+                accountResp.setMessage(messageSource.getMessage("account.not.found", null, Locale.ENGLISH));
+                accountResp.setStatus("false");
+                return accountResp;
+            }
             AccountDto accountDto=modelMapper.map(account,AccountDto.class);
             accountResp.setMessage(messageSource.getMessage("account.fetch.success", null, Locale.ENGLISH));
             accountResp.setStatus("true");
@@ -95,4 +106,19 @@ public class AccountServiceImpl implements AccountService {
 
     }
 
+    @Override
+    public AccountResp getAccountByPhoneNumber(String phoneNumber) {
+        try{
+            AccountResp accountResp=new AccountResp();
+            Account account=  accountRepository.findByPhoneNumber(phoneNumber);
+            AccountDto accountDto=modelMapper.map(account,AccountDto.class);
+            accountResp.setMessage(messageSource.getMessage("account.fetch.success", null, Locale.ENGLISH));
+            accountResp.setStatus("true");
+            accountResp.setAccountDetails(accountDto);
+            return accountResp;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

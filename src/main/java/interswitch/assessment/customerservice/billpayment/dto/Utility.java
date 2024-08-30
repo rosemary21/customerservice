@@ -45,7 +45,8 @@ public class Utility {
     }
 
 
-    public static String generateNumbericReference(String numeric,int length){
+
+    public static String generateNumber(String numeric,int length){
         String AlphaNumericString=numeric;
 
         StringBuilder sb = new StringBuilder(length);

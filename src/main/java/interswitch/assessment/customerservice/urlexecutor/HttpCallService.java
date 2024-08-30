@@ -42,7 +42,7 @@ public class HttpCallService {
         try {
             httpResponse = Unirest.get(url)
                     .header("Content-Type", "application/json")
-                    .header("Authorization", "Bearer FLWSECK_TEST-7aa34dd66215a7f2fae31ca3763a88e7-X")
+                    .header("Authorization", "Bearer FLWSECK-3a502841898931493a0b326f123de7d0-191a453858avt-X")
                     .asString();
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,8 +58,7 @@ public class HttpCallService {
         try {
             httpResponse = Unirest.post(url)
                     .header("Content-Type", "application/json")
-                    .header("Authorization", "Bearer FLWSECK_TEST-7aa34dd66215a7f2fae31ca3763a88e7-X")
-                    .body(payload)
+                    .header("Authorization", "Bearer FLWSECK-3a502841898931493a0b326f123de7d0-191a453858avt-X")
                     .asString();
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,5 +66,4 @@ public class HttpCallService {
         }
         return  httpResponse.getBody();
     }
-
 }

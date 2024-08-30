@@ -115,7 +115,7 @@ public class BillPaymentServiceimpl implements BillPaymentService {
     public CreateBillResp createBiller(CreateBillReq req){
         try{
             String url=billPaymentBaseUrl+billPaymentCreateBillerUrl+req.getBillerCode()+"/items/"+req.getItemCode()+"/payment";
-            req.setReference(Utility.generateAlphaNumbericReference(Utility.generateReference(7),8)+"-"+Utility.generateNumbericReference(Utility.generateReference(7),4)+"-"+Utility.generateAlphaNumbericReference(Utility.generateReference(7),4)+"-"+Utility.generateAlphaNumbericReference(Utility.generateReference(7),4)+"-"+Utility.generateAlphaNumbericReference(Utility.generateReference(7),12));
+            req.setReference(Utility.generateAlphaNumbericReference(Utility.generateReference(7),8)+"-"+Utility.generateNumber(Utility.generateReference(7),4)+"-"+Utility.generateAlphaNumbericReference(Utility.generateReference(7),4)+"-"+Utility.generateAlphaNumbericReference(Utility.generateReference(7),4)+"-"+Utility.generateAlphaNumbericReference(Utility.generateReference(7),12));
             log.info("geting the payment url {}",url);
             String request=mapper.writeValueAsString(req);
             log.info("getting the payment payload {}",request);

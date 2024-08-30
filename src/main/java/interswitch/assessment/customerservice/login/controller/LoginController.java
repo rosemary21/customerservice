@@ -41,6 +41,6 @@ public class LoginController {
             loginResponseData.setToken(tokenValue);
             return new ResponseEntity<>(loginResponseData, HttpStatus.OK);
         }
-        return new ResponseEntity<LoginResponseData>(loginResponseData, HttpStatus.OK);
+        return new ResponseEntity<LoginResponseData>(loginResponseData, HttpStatus.BAD_REQUEST);
     }
 }

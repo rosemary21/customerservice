@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Setter
 @Getter
 public class AccountDto {
@@ -20,4 +22,6 @@ public class AccountDto {
     private String dateOfBirth;
     @Column(unique = true)
     private String bvn;
+    private BigDecimal balance;
+
 }
