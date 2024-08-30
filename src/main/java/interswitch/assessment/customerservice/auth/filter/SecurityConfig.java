@@ -21,6 +21,13 @@ public class SecurityConfig  {
     JwtTokenProvider jwtTokenProvider;
 
 
+    /**
+     * This is the spring security part this request matcher is used to white list the url and the jwtprovider is use to
+     * authenticate the token and determine if the person is allowed to access the service
+     * @param http
+     * @return
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http

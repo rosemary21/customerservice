@@ -15,6 +15,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * THis service does with the creation of account and fetching of the account information
+ */
 @Slf4j
 @RestController
 @RequestMapping(value = {"/api/v1/account"}, produces = {MediaType.APPLICATION_JSON_VALUE})

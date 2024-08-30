@@ -4,6 +4,9 @@ package interswitch.assessment.customerservice.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * THis is use to determine the password pattern if it correct lowercase,uppercase,symbol
+ */
 public class PasswordUtil {
 
     public static boolean checkPassword(String password) {

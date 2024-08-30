@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+/**
+ * This is the servicd that has to do with transfer this create transfer request and fetch banks
+ */
 
 @Slf4j
 @RestController
@@ -43,7 +46,7 @@ public class TransferController {
 
 
     @ApiOperation(value = "Transfer Account Service", response = AccountResp.class, notes = "This is use to Transfer Service")
-    @RequestMapping(value = {"/fetch/banks"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/fetch/banks"}, method = RequestMethod.POST)
     private ResponseEntity<FinancialInstitutionResp> fetchAccount(@RequestBody PageRequests transferDto) {
         var transferResponse = transferService.getFinancialInstitution(transferDto);
         return new ResponseEntity<FinancialInstitutionResp>(transferResponse, HttpStatus.OK);

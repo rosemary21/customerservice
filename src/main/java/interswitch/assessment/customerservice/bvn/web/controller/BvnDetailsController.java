@@ -23,6 +23,12 @@ public class BvnDetailsController {
     @Autowired
     private BvnDetailService bvnDetailService;
 
+    /**
+     * This service is use to get the bvn details after the bvn has been inputed.
+     *
+     * @param bvn
+     * @return
+     */
 
     @ApiOperation(value = "BVN Fetch service", response = BvnDetailsResp.class, notes = "This is use to Fetch BVN")
     @RequestMapping(method = RequestMethod.POST)
@@ -32,6 +38,12 @@ public class BvnDetailsController {
     }
 
 
+    /**
+     * THis service does with the verification of bvn by asking the user to enter the dateofbirth and 2fa has been done to
+     * the phone number tied to the bvn
+     * @param bvn
+     * @return
+     */
 
     @ApiOperation(value = "BVN Verify service", response = BvnDetailsResp.class, notes = "This is use to Verify BVN")
     @RequestMapping(value = {"/verify"}, method = RequestMethod.POST)

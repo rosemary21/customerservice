@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+/*
+This is the service that login the user
+ */
 
 @Slf4j
 @RestController
@@ -32,6 +35,15 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
+    /**
+     * This service login the user after the user has entered the right password and phone number
+     * @param accountReq
+     * @param session
+     * @param request
+     * @param response
+     * @param authentication
+     * @return
+     */
     @ApiOperation(value = "Add Account Service", response = AccountResp.class, notes = "This is use to Account Service")
     @RequestMapping(value = {"/customer"}, method = RequestMethod.POST)
     private ResponseEntity<LoginResponseData> addAccount(@RequestBody LoginParam accountReq, HttpSession session, HttpServletRequest request, HttpServletResponse response, Authentication authentication) {

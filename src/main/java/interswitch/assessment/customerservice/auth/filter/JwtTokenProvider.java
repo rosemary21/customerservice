@@ -50,6 +50,12 @@ public class JwtTokenProvider {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 
+
+    /**
+     * This is use to validate the JWT token enster and verify if the JWT token entered is correct
+     * @param token
+     * @return
+     */
     public JwtResponse validateToken(String token){
         try{
             log.info("getting the token {}",token);

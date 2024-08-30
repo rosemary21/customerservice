@@ -34,7 +34,6 @@ public class JwtTokenFilter  extends OncePerRequestFilter {
         if (value) {
             filterChain.doFilter(request, httpServletResponse);
         } else {
-            log.info("GETTING THE API KEY GETTING THE API KEY GETTING THE API KEY  GETTING THE API KEY  GETTING THE API KEY  {} ", request.getHeader("apiKey"));
             JwtResponse result = jwtTokenProvider.validateToken(request.getHeader("apiKey"));
             if (result.isResult()) {
                 if (result.getRole().equalsIgnoreCase("Customer")) {

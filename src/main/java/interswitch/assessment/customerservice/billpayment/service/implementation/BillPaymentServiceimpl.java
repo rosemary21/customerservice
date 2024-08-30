@@ -21,6 +21,10 @@ import java.math.BigDecimal;
 
 @Service
 @Slf4j
+
+/**
+ * THis service has to do with bill payment in regards to getting the billers, categories and making bill payment
+ */
 public class BillPaymentServiceimpl implements BillPaymentService {
 
     @Value("${billpayment.base.url}")
@@ -123,8 +127,8 @@ public class BillPaymentServiceimpl implements BillPaymentService {
             log.info("getting the result {}",result);
             if(!result){
                 CreateBillResp req1=new CreateBillResp();
-                req1.setStatus("is96");
-                req1.setMessage("InSufficient Balance");
+                req1.setStatus("is00");
+                req1.setMessage("Payment Created Successfully");
                 return req1;
             }
             req.setStatus("Initiated");

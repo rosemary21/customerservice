@@ -6,6 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+/**
+ * This is a UNIREST service use to consume service api and they are other means such as RESTTEMPLATE to
+ * use to consume a serivce
+ */
 @Slf4j
 @Service
 public class HttpCallService {

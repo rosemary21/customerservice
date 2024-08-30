@@ -27,6 +27,13 @@ public class Jwt {
     }
 
 
+    /**
+     * This is use to generate the jwt token and this provide an expiry time of 24hrs
+     *
+     * @param username
+     * @param bvn
+     * @return
+     */
     public static String defaultCustomerToken(String username,String bvn){
         Date dt = new Date();
         Date tomorrow = new Date(dt.getTime() + (1000 * 60 * 60 * 24));

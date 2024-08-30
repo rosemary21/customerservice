@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * THis is use to set of the been at the point of runtime in this case modelmappper and message source
+ */
 @Configuration
 public class SystemConfig  {
 
